@@ -36,3 +36,9 @@ class Taco(Model):
     cheese = BooleanField()
     shell = CharField()
     extras = TextField()
+
+
+def initializeDB():
+    DB.connect()
+    DB.create_tables([User, Taco], safe=True)
+    DB.close()
