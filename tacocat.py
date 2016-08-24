@@ -45,6 +45,19 @@ def index():
     return render_template('index.html', tacos=tacos)
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = forms.RegisterForm()
+    if form.validate_on_submit():
+        models.User.create_user(
+            email=form.email.data,
+            password=form.password.data
+        )
+        flash("You've successfully registered!")
+        return redirect(url_for('index'))
+    return render_template('register.html', form=form)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = forms.LoginForm()
