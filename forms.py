@@ -30,7 +30,7 @@ class RegisterForm(Form):
     )
     password2 = PasswordField(
         'Confirm password',
-        validators[DataRequired()]
+        validators=[DataRequired()]
     )
 
 
