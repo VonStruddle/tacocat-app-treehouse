@@ -25,12 +25,12 @@
           <nav class="menu">
           <!-- menu goes here -->
           {% if current_user.is_authenticated() %}
-            <a href="{{ url_for('logout') }}">Log out</a>
+            <a href="{{ url_for('logout') }}" title="Log out">Log out</a>
           {% else %}
-            <a href="{{ url_for('login') }}">Log in</a>
-            <a href="{{ url_for('register') }}">Register</a>
+            <a href="{{ url_for('login') }}" title="Log in">Log in</a>
+            <a href="{{ url_for('register') }}" title="Register">Sign up</a>
           {% endif %}
-          <a href="{{ url_for('create_taco') }}">Create a new taco</a>
+          <a href="{{ url_for('create_taco') }}" title="Add a new taco">Add a new taco</a>
           </nav>
           {% block content %}{% endblock %}
         </div>
