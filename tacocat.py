@@ -45,7 +45,7 @@ def index():
     return render_template('index.html', tacos=tacos)
 
 
-@app.route('/new_taco', methods=['GET', 'POST'])
+@app.route('/taco', methods=['GET', 'POST'])
 @login_required
 def create_taco():
     form = forms.TacoForm()
