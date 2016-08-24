@@ -49,7 +49,7 @@ class LoginForm(Form):
 
 
 class TacoForm(Form):
-    protein = CharField('Protein')
+    protein = StringField('Protein')
     cheese = BooleanField('Cheese')
-    shell = CharField('Shell')
+    shell = StringField('Shell')
     extras = TextAreaField('Extras')
