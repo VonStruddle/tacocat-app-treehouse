@@ -18,6 +18,27 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return models.User.get(models.User.id == user_id)
+    except:
+        return None
+
+
+@app.before_request
+def before_request():
+    g.db = models.DB
+    g.db.connect()
+    g.user = current_user
+
+
+@app.after_request
+def after_request(response):
+    g.db.close()
+    return response
+
+
 @app.route('/')
 def index():
     return render_template('index.html',
