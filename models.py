@@ -36,6 +36,11 @@ class Taco(Model):
     cheese = BooleanField()
     shell = CharField()
     extras = TextField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = DB
+        order_by = ('-created_at',)
 
 
 def initializeDB():
