@@ -45,6 +45,24 @@ def index():
     return render_template('index.html', tacos=tacos)
 
 
+@app.route('login', methods=['GET', 'POST'])
+def login():
+    form = forms.LoginForm()
+    if form.validate_on_submit():
+        try:
+            user = models.User.get(models.User.email == form.email.data)
+        except models.DoesNotExist:
+            flash("Your email or password doesn't match")
+        else:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user)
+                flash("You've successfully logged in!")
+                return redirect(url_for('index'))
+            else:
+                flash("Your email or password doesn't match")
+    return render_template('login.html', form=form)
+
+
 if __name__ == '__main__':
     models.initializeDB()
     try:
