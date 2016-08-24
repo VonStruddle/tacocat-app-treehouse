@@ -41,8 +41,8 @@ def after_request(response):
 
 @app.route('/')
 def index():
-    return render_template('index.html',
-                           tacos=['taco1', 'taco2'])
+    tacos = models.Taco.select()
+    return render_template('index.html', tacos=tacos)
 
 
 if __name__ == '__main__':
