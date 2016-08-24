@@ -45,6 +45,23 @@ def index():
     return render_template('index.html', tacos=tacos)
 
 
+@app.route('/new_taco', methods=['GET', 'POST'])
+@login_required
+def create_taco():
+    form = forms.TacoForm()
+    if form.validate_on_submit():
+        models.Taco.create(
+            user=g.user._get_current_object(),
+            protein=form.protein.data,
+            cheese=form.protein.data,
+            shell=form.shell.data,
+            extras=form.extras.data.strip()
+        )
+        flash("New Taco created successfully!")
+        return redirect(url_for('index'))
+    return render_template('taco.html', form=form)
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = forms.RegisterForm()
