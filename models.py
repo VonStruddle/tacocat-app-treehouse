@@ -15,7 +15,7 @@ class User(UserMixin, Model):
     class Meta:
         database = DB
 
-    @staticmethod
+    @classmethod
     def create_user(cls, email, password):
         try:
             with DB.transaction():
