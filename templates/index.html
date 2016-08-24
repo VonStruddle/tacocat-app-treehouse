@@ -18,11 +18,11 @@
               <!-- taco attributes here -->
               <th>{{ taco.protein }}</th>
               <th>
-                {{ if taco.cheese }}
+                {% if taco.cheese %}
                   Yes
-                {{ else }}
+                {% else %}
                   No
-                {{ endif }}
+                {% endif %}
               </th>
               <th>{{ taco.shell }}</th>
               <th>{{ taco.extras }}</th>
