@@ -15,6 +15,17 @@ class User(UserMixin, Model):
     class Meta:
         database = DB
 
+    @staticmethod
+    def create_user(cls, email, password):
+        try:
+            with DB.transaction():
+                cls.create(
+                    email=email,
+                    password=generate_password_hash(password)
+                )
+        except IntegrityError:
+            raise ValueError('User already exists')
+
 
 class Taco(Model):
     user = ForeignKeyField(
