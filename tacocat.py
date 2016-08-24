@@ -45,7 +45,7 @@ def index():
     return render_template('index.html', tacos=tacos)
 
 
-@app.route('login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = forms.LoginForm()
     if form.validate_on_submit():
@@ -61,6 +61,14 @@ def login():
             else:
                 flash("Your email or password doesn't match")
     return render_template('login.html', form=form)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash("You've successfully logged out!")
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
