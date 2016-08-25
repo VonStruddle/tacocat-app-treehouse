@@ -53,7 +53,7 @@ def create_taco():
         models.Taco.create(
             user=g.user._get_current_object(),
             protein=form.protein.data,
-            cheese=form.protein.data,
+            cheese=form.cheese.data,
             shell=form.shell.data,
             extras=form.extras.data.strip()
         )

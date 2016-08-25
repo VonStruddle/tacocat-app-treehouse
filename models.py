@@ -33,7 +33,7 @@ class Taco(Model):
         related_name='tacos'
     )
     protein = CharField()
-    cheese = BooleanField(default=False)
+    cheese = BooleanField()
     shell = CharField()
     extras = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
