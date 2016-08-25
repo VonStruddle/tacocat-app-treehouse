@@ -1,7 +1,7 @@
 import datetime
 
-from flask.ext.login import UserMixin
-from flask.ext.bcrypt import generate_password_hash
+from flask_login import UserMixin
+from flask_bcrypt import generate_password_hash
 from peewee import *
 
 
@@ -33,7 +33,7 @@ class Taco(Model):
         related_name='tacos'
     )
     protein = CharField()
-    cheese = BooleanField()
+    cheese = BooleanField(default=False)
     shell = CharField()
     extras = TextField()
     created_at = DateTimeField(default=datetime.datetime.now)
